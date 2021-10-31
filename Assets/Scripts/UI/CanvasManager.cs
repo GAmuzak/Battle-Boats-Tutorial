@@ -49,10 +49,6 @@ public class CanvasManager : MonoBehaviour
             desiredCanvas.gameObject.SetActive(true);
             lastActiveScreen = desiredCanvas;
         }
-
-        if (genieDialogBox != null)
-        {
-            genieDialogBox.SetActive(false);
-        }
+        
     }
 }
