@@ -37,8 +37,8 @@ public class EnemyScript : MonoBehaviour
             while(taken == true)
             {
                 taken = false;
-                int shipNose = UnityEngine.Random.Range(0, 99);
-                int rotateBool = UnityEngine.Random.Range(0, 2);
+                int shipNose = Random.Range(0, 99);
+                int rotateBool = Random.Range(0, 2);
                 int minusAmount = rotateBool == 0 ? 10 : 1;
                 for(int i = 0; i < tileNumArray.Length; i++)
                 {
@@ -66,7 +66,7 @@ public class EnemyScript : MonoBehaviour
                 }
             }
         }
-        foreach(var x in enemyShips)
+        foreach(int[] x in enemyShips)
         {
             Debug.Log("x: " + x[0]);
         }

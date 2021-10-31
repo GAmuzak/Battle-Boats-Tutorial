@@ -13,6 +13,7 @@ public class MissileScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         gameManager.CheckHit(collision.gameObject);
+        Invoke(nameof(gameManager.EndPlayerTurn), 1.0f);
         Destroy(gameObject);
     }
 }

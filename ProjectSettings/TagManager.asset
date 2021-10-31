@@ -8,6 +8,8 @@ TagManager:
   - Missile
   - Tile
   - Ship
+  - Bullet
+  - NetworkedOpponentChecks
   layers:
   - Default
   - TransparentFX
