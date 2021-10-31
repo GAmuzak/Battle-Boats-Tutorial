@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
             tile.GetComponent<TileScript>().SwitchColors(1);
             topText.text = "Missed, there is no ship there.";
         }
-        Invoke("EndPlayerTurn", 1.0f);
+        Invoke(nameof(EndPlayerTurn), 1.0f);
     }
 
     public void EnemyHitPlayer(Vector3 tile, int tileNum, GameObject hitObj)
@@ -163,31 +163,35 @@ public class GameManager : MonoBehaviour
             playerShipText.text = playerShipCount.ToString();
             enemyScript.SunkPlayer();
         }
-       Invoke("EndEnemyTurn", 2.0f);
+        Invoke(nameof(EndEnemyTurn), 2.0f);
     }
 
     private void EndPlayerTurn()
     {
-        for (int i = 0; i < ships.Length; i++) ships[i].SetActive(true);
+        foreach (GameObject ship in ships) ship.SetActive(true);
         foreach (GameObject fire in playerFires) fire.SetActive(true);
         foreach (GameObject fire in enemyFires) fire.SetActive(false);
         enemyShipText.text = enemyShipCount.ToString();
         topText.text = "Enemy's turn";
         enemyScript.NPCTurn();
         ColorAllTiles(0);
-        if (playerShipCount < 1) GameOver("ENEMY WINs!!!");
+        if (playerShipCount < 1) 
+            // TODO: PUN LOSE CONDITION
+            GameOver("ENEMY WINs!!!");
     }
 
     public void EndEnemyTurn()
     {
-        for (int i = 0; i < ships.Length; i++) ships[i].SetActive(false);
+        foreach (GameObject ship in ships) ship.SetActive(false);
         foreach (GameObject fire in playerFires) fire.SetActive(false);
         foreach (GameObject fire in enemyFires) fire.SetActive(true);
         playerShipText.text = playerShipCount.ToString();
         topText.text = "Select a tile";
         playerTurn = true;
         ColorAllTiles(1);
-        if (enemyShipCount < 1) GameOver("YOU WIN!!");
+        if (enemyShipCount < 1)
+            // TODO: PUN WIN CONDITION
+            GameOver("YOU WIN!!");
     }
 
     private void ColorAllTiles(int colorIndex)

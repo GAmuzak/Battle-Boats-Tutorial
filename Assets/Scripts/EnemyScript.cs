@@ -147,7 +147,7 @@ public class EnemyScript : MonoBehaviour
     public void MissileHit(int hit)
     {
         guessGrid[guess] = 'h';
-        Invoke("EndTurn", 1.0f);
+        Invoke(nameof(EndTurn), 1.0f);
     }
 
     public void SunkPlayer()

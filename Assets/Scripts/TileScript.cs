@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class TileScript : MonoBehaviour
 {
-    GameManager gameManager;
-    Ray ray;
-    RaycastHit hit;
-
+    private GameManager gameManager;
+    private Ray ray;
+    private RaycastHit hit;
     private bool missileHit = false;
-    Color32[] hitColor = new Color32[2];
+    private Color32[] hitColor = new Color32[2];
+    private Camera mainCamera;
 
     void Start()
     {
+        mainCamera = Camera.main;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         hitColor[0] = gameObject.GetComponent<MeshRenderer>().material.color;
         hitColor[1] = gameObject.GetComponent<MeshRenderer>().material.color;
@@ -20,7 +21,7 @@ public class TileScript : MonoBehaviour
 
     void Update()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit))
         {
             if(Input.GetMouseButtonDown(0) && hit.collider.gameObject.name == gameObject.name)
