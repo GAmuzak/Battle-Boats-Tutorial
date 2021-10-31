@@ -33,6 +33,6 @@ public class LaunchPhoton : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.NickName = "Bholu";
+        Debug.Log("Hello, Connected to Photon");
     }
 }

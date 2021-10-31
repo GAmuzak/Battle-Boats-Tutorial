@@ -2,6 +2,7 @@ using System.Collections;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine;
 using WebSocketSharp;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -43,6 +44,13 @@ public class ManageRoom : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        Debug.Log("Joined room");
+        StartCoroutine(LoadAsynchronously("BattleShips"));
+    }
+
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
         StartCoroutine(LoadAsynchronously("BattleShips"));
     }
 
